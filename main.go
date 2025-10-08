@@ -19,6 +19,8 @@ var clients = make(map[*websocket.Conn]string) // store connections with role (u
 var mu sync.Mutex
 
 func handleWebSocket(c *gin.Context) {
+	c.Writer.Header().Set("Connection", "Upgrade")
+	c.Writer.Header().Set("Upgrade", "websocket")
 	role := c.Query("role") // admin or user
 	if role == "" {
 		role = "user" // default to user if not specified

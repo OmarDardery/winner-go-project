@@ -10,7 +10,7 @@
   <button id="choose">Choose Random User</button>
 
   <script>
-    const ws = new WebSocket("ws://" + location.host + "/ws?role=admin");
+    const ws = new WebSocket("wss://" + window.location.host + "/ws?role=admin");
 
     ws.onopen = () => console.log("Connected as admin");
 

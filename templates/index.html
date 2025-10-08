@@ -10,7 +10,7 @@
   <p id="msg">Waiting...</p>
 
   <script>
-    const ws = new WebSocket("ws://" + location.host + "/ws?role=user");
+    const ws = new WebSocket("wss://" + window.location.host + "/ws?role=user");
 
     ws.onmessage = (event) => {
         let msg = document.getElementById("msg");
