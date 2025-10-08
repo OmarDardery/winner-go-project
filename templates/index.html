@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>...are you ready for it?</title>
+</head>
+<body>
+     <h1>👤 User Page</h1>
+  <p id="msg">Waiting...</p>
+
+  <script>
+    const ws = new WebSocket("ws://" + location.host + "/ws?role=user");
+
+    ws.onmessage = (event) => {
+        let msg = document.getElementById("msg");
+        if (event.data === "loser") {
+            msg.innerHTML = `
+                <video width="400" controls autoplay>
+                    <source src="/static/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+        } else {
+            msg.textContent = "Winner";
+        }
+
+    };
+
+    ws.onopen = () => console.log("Connected as user");
+  </script>
+</body>
+</html>
